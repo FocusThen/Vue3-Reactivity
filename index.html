@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue3 Reactivity</title>
+</head>
+
+<body>
+
+    $ <span id="total">0</span>
+    <button onclick="product.quantity--">-</button>
+    <button onclick="product.quantity++">+</button>
+    <input type="color" oninput="product.color = this.value">
+    <script src="reactivity.js"></script>
+    <script>
+        let product = reactive({ price: 10, quantity: 4, color: 'peru' })
+        let total = 0
+        let activeEffect = null
+        effect(() => {
+            total = product.price * product.quantity
+            document.getElementById('total').innerText = total
+        })
+        effect(() => {
+            document.body.style.background = product.color
+        })
+    </script>
+</body>
+
+</html>
